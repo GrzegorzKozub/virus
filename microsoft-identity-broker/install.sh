@@ -1,17 +1,18 @@
 #!/usr/bin/env bash
 
 post_install() {
-  systemctl daemon-reload || true
+  systemctl daemon-reload
 }
 
 post_upgrade() {
-  systemctl daemon-reload || true
+  systemctl daemon-reload
 }
 
 pre_remove() {
-  systemctl stop microsoft-identity-devicebroker.service || true
+  systemctl stop microsoft-identity-device-broker.service
 }
 
 post_remove() {
-  systemctl daemon-reload || true
+  systemctl daemon-reload
+  echo ">>> Reboot or run systemctl --user stop microsoft-identity-broker"
 }

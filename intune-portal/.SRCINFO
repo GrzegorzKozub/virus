@@ -5,6 +5,7 @@ pkgbase = intune-portal
 	url = https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/i/intune-portal
 	install = install.sh
 	arch = x86_64
+	depends = microsoft-identity-broker
 	depends = webkit2gtk-4.1
 	source = https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/i/intune-portal/intune-portal_1.2503.10-noble_amd64.deb
 	source = os-release

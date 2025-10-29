@@ -9,6 +9,7 @@ pkgrel=1
 
 arch=('x86_64')
 depends=(
+  'microsoft-identity-broker'
   'webkit2gtk-4.1'
 )
 

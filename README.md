@@ -1,36 +1,46 @@
 # Virus
 
+Register Arch Linux device with Microsoft Intune
 
+## Installation
 
-Before you can enroll your device, you need to enable the service and timer and then reboot:
-'sudo systemctl enable intune-daemon.service'
-For GNOME based systems:
-'systemctl --user enable intune-agent.service intune-agent.timer
+1. Run `~/code/virus/virus.zsh`
 
-The registration file is not in the correct location for Intune Portal to find it.
-So please create the symlink for it:
-'mkdir -p ~/.local/state/intune'
-'ln -s ~/.config/intune/registration.toml ~/.local/state/intune/registration.toml'
+### Manual config
 
+1. Start Intune and sign in to your Microsoft account (you are NOT prompted for MFA)
+2. See that your device is showing on your Microsoft account [device list](https://myaccount.microsoft.com/device-list)
+3. Sign in to Edge using Entra SSO (you are prompted for MFA)
 
-https://myaccount.microsoft.com/device-list
+## Services
 
- https://github.com/recolic/microsoft-intune-archlinux?tab=readme-ov-file
- https://www.reddit.com/r/archlinux/comments/1nwg65t/enrollment_of_arch_linuxpc_in_microsoft_intune/
- https://git.recolic.net/root/microsoft-intune-archlinux
- https://aur.archlinux.org/packages/intune-portal-bin
-https://aur.archlinux.org/packages/microsoft-identity-broker-bin
- https://github.com/siemens/linux-entra-sso
+Services provided by `microsoft-identity-broker` are started by Edge so when using Brave and `linux-entra-sso` they should be enabled and started via `systemd`
 
+```sh
+systemctl status microsoft-identity-device-broker.service
+systemctl --user status microsoft-identity-broker.service
+```
 
-https://aur.archlinux.org/packages/microsoft-identity-broker-bin
-https://aur.archlinux.org/packages/intune-portal-bin
+Services provided by `intune-portal` can be left disabled
 
-https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/m/microsoft-identity-broker/
-https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/i/intune-portal/
+```sh
+systemctl status intune-daemon.service
+systemctl --user status intune-agent.timer
+systemctl --user status intune-agent.service
+```
 
+## References
 
-https://wiki.archlinux.org/title/PKGBUILD
-https://wiki.archlinux.org/title/Makepkg
+Guides
 
-https://aur.archlinux.org/packages/microsoft-edge-stable-bin
+- [Intune for Arch Linux](https://git.recolic.net/root/microsoft-intune-archlinux)
+
+Original AUR packages
+
+- [microsoft-identity-broker-bin](https://aur.archlinux.org/packages/microsoft-identity-broker-bin) ([sources](https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/m/microsoft-identity-broker/))
+- [intune-portal-bin](https://aur.archlinux.org/packages/intune-portal-bin) ([sources](https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/i/intune-portal/))
+
+Using Entra SSO with Brave
+
+- [linux-entra-sso](https://github.com/siemens/linux-entra-sso)
+
