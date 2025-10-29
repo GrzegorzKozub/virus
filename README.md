@@ -44,3 +44,7 @@ Using Entra SSO with Brave
 
 - [linux-entra-sso](https://github.com/siemens/linux-entra-sso)
 
+## Known issues
+
+Currently, only `intune-portal` 1.2503.10 and `microsoft-identity-broker` 2.0.1 seem to work. More recent versions are broken.
+
