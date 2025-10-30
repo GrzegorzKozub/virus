@@ -1,12 +1,19 @@
 pkgbase = microsoft-identity-broker
 	pkgdesc = Microsoft Identity Broker
-	pkgver = 2.0.1
+	pkgver = 2.0.3
 	pkgrel = 1
 	url = https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/m/microsoft-identity-broker
 	install = install.sh
 	arch = x86_64
-	depends = jdk11-openjdk
-	source = https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/m/microsoft-identity-broker/microsoft-identity-broker_2.0.1_amd64.deb
-	sha256sums = 2617899ecbb567125b729b74dfaec5a9f1d5770596bcf7a6d9f9b48bcb3b3061
+	depends = dbus
+	depends = gnome-keyring
+	depends = systemd
+	depends = opensc
+	depends = openssl
+	provides = msft-identity-broker=2.0.3
+	conflicts = msft-identity-broker
+	replaces = msft-identity-broker
+	source = source.deb::https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/m/microsoft-identity-broker/microsoft-identity-broker_2.0.3_amd64.deb
+	sha256sums = be8acf7f9a6f34b001c27b620dd7c34a2b9b8358db1da28afe8d1f1646d9d34d
 
 pkgname = microsoft-identity-broker

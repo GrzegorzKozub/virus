@@ -2,24 +2,37 @@
 
 pkgname=microsoft-identity-broker
 pkgdesc="Microsoft Identity Broker"
-url="https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/m/${pkgname}"
+# url="https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/m/${pkgname}"
+url='https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/m/microsoft-identity-broker'
 
-pkgver=2.0.1
+pkgver=2.0.3
 pkgrel=1
 
 arch=('x86_64')
-depends=(
-  'jdk11-openjdk'
-)
 
-source=("$url/${pkgname}_${pkgver}_amd64.deb")
-sha256sums=('2617899ecbb567125b729b74dfaec5a9f1d5770596bcf7a6d9f9b48bcb3b3061')
+depends=("dbus" "gnome-keyring" "systemd" "opensc" "openssl")
+
+provides=("msft-identity-broker=${pkgver}")
+conflicts=("msft-identity-broker")
+replaces=("msft-identity-broker")
+
+# source=("$url/${pkgname}_${pkgver}_amd64.deb")
+# sha256sums=('2617899ecbb567125b729b74dfaec5a9f1d5770596bcf7a6d9f9b48bcb3b3061')
+
+source=("source.deb::$url/${pkgname}_${pkgver}_amd64.deb")
+sha256sums=('be8acf7f9a6f34b001c27b620dd7c34a2b9b8358db1da28afe8d1f1646d9d34d')
 
 install=install.sh
 
+# package() {
+#   tar xzf data.tar.gz
+#   find ./usr/lib/systemd -type f -exec \
+#     sed -i 's|java-11-openjdk-amd64|java-11-openjdk|' {} +
+#   cp --parents --archive {opt,usr} "$pkgdir"
+# }
+
 package() {
+  ar x source.deb
   tar xzf data.tar.gz
-  find ./usr/lib/systemd -type f -exec \
-    sed -i 's|java-11-openjdk-amd64|java-11-openjdk|' {} +
-  cp --parents --archive {opt,usr} "$pkgdir"
+  cp -r "$srcdir/usr" "$pkgdir/"
 }
