@@ -14,7 +14,7 @@ arch=('x86_64')
 #   'webkit2gtk-4.1'
 # )
 
-depends=("webkit2gtk" "gnome-keyring" "libsecret" "openssl")
+# depends=("webkit2gtk-4.1" "gnome-keyring" "libsecret" "openssl")
 
 # source=(
 #   "https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/i/${pkgname}/${pkgname}_${pkgver}-noble_amd64.deb"
