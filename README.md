@@ -13,3 +13,6 @@ AUR packages provided by others
 
 Use Entra SSO with Brave via [linux-entra-sso](https://github.com/siemens/linux-entra-sso)
 
+## Known issues
+
+- [libgobject-2.0.so.0 coredump](https://git.recolic.net/root/microsoft-intune-archlinux/-/issues/3)
